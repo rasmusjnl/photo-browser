@@ -1,14 +1,21 @@
 import {
   extendTheme,
+  ThemeConfig,
   withDefaultColorScheme,
   withDefaultProps,
   withDefaultSize,
   withDefaultVariant,
 } from "@chakra-ui/react";
 
+const config: ThemeConfig = {
+  initialColorMode: "system",
+  useSystemColorMode: false,
+};
+
 /** TODO: customize theme if necessary */
 const customTheme = extendTheme(
-  withDefaultColorScheme({ colorScheme: "red" }),
+  config,
+  withDefaultColorScheme({ colorScheme: "gray" }),
   withDefaultSize({ size: "md" }),
   withDefaultVariant({ variant: "outline" }),
   withDefaultProps({ defaultProps: { variant: "outline" }, components: ["Button"] }),
