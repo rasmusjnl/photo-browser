@@ -1,6 +1,7 @@
 import { createStandaloneToast, UseToastOptions } from "@chakra-ui/react";
 import customTheme from "theme";
 
+// TODO: delete this file
 interface ToastData {
   title: string;
   status: UseToastOptions["status"];

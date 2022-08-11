@@ -1,26 +1,27 @@
-import { Suspense } from "react";
-import { Box, Button, Spinner } from "@chakra-ui/react";
-import { getPhotoById } from "services/photoService";
-import { showToast } from "utils/toastUtils";
+import { Container, Flex, Heading, Spinner, Text, VStack, Wrap } from "@chakra-ui/react";
+import PhotoThumbnail from "components/PhotoThumbnail";
+import usePhotos from "hooks/usePhotos";
 
 const App: React.FC = () => {
-  const testFunction = async () => {
-    try {
-      const photoData = await getPhotoById("1");
-      console.log("PHOTO DATA", photoData);
-      showToast({ title: photoData.title, status: "success" });
-    } catch (error) {
-      console.log(`Error fetching photoData: ${error}`);
-    }
-  };
+  const { isLoading, isError, isSuccess, data: photos, error } = usePhotos();
 
   return (
-    // TODO: remove Suspense if no lazy loaded components
-    <Suspense fallback={<Spinner />}>
-      <Box>
-        <Button onClick={testFunction}>Click me</Button>
-      </Box>
-    </Suspense>
+    <VStack>
+      <Flex w="100vw" alignItems="center" justifyContent="center" height="80px">
+        <Heading variant="h1">Photo Browser</Heading>
+      </Flex>
+      <Container maxW="container.lg">
+        {isLoading && <Spinner />}
+        {isError && <Text>{error.message}</Text>}
+        {isSuccess && (
+          <Wrap>
+            {photos.map((photo) => (
+              <PhotoThumbnail key={photo.id} photo={photo} />
+            ))}
+          </Wrap>
+        )}
+      </Container>
+    </VStack>
   );
 };
 
