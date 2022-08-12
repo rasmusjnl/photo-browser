@@ -1,5 +1,6 @@
-import { Container, Spinner, Text, VStack, Wrap } from "@chakra-ui/react";
+import { Container, Spinner, VStack, Wrap } from "@chakra-ui/react";
 import Appbar from "components/Appbar";
+import Error from "components/Error";
 import PhotoThumbnail from "components/PhotoThumbnail";
 import usePhotos from "hooks/usePhotos";
 
@@ -9,11 +10,11 @@ const App: React.FC = () => {
   return (
     <VStack>
       <Appbar />
-      <Container maxW="container.lg">
+      <Container maxW="container.lg" centerContent={true} py="1rem">
         {isLoading && <Spinner />}
-        {isError && <Text>{error.message}</Text>}
+        {isError && <Error error={error} />}
         {isSuccess && (
-          <Wrap>
+          <Wrap justify="center">
             {photos.map((photo) => (
               <PhotoThumbnail key={photo.id} photo={photo} />
             ))}

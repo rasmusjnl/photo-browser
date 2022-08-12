@@ -1,4 +1,4 @@
-import { Flex, Heading, IconButton, useColorMode } from "@chakra-ui/react";
+import { Flex, Heading, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 const styles = {
@@ -20,8 +20,11 @@ const Appbar: React.FC = () => {
   const { container, toggleButton } = styles;
   const { colorMode, toggleColorMode } = useColorMode();
 
+  const bg = useColorModeValue("baseLight.900", "baseDark.600");
+  const boxShadow = useColorModeValue("0 0px 8px 1px #e9e9e9d1, 0px 1px 1px 0px #70767e78", "");
+
   return (
-    <Flex sx={container}>
+    <Flex sx={{ ...container, bg, boxShadow }}>
       <Heading variant="h1">Photo Browser</Heading>
       <IconButton
         aria-label="toggle-color-mode"
