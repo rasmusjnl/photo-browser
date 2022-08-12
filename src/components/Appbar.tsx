@@ -29,10 +29,12 @@ const Appbar: React.FC = () => {
       <IconButton
         aria-label="toggle-color-mode"
         sx={toggleButton}
+        colorScheme="gray"
         isRound={true}
         variant="solid"
         icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
-        onClick={toggleColorMode}></IconButton>
+        onClick={toggleColorMode}
+      />
     </Flex>
   );
 };

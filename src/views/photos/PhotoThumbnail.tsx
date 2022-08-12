@@ -1,4 +1,4 @@
-import { WrapItem } from "@chakra-ui/react";
+import { Image, WrapItem } from "@chakra-ui/react";
 import { useCallback } from "react";
 import { LazyLoadImage, ScrollPosition } from "react-lazy-load-image-component";
 
@@ -28,13 +28,21 @@ const PhotoThumbnail: React.FC<Props> = ({ photo, scrollPosition }: Props) => {
 
   return (
     <WrapItem key={photo.id} sx={container} onClick={() => handleDetails(photo.id)}>
-      <LazyLoadImage
+      {/* <LazyLoadImage
         src={photo.thumbnailUrl}
         alt={photo.title}
         width={150}
         height={150}
         scrollPosition={scrollPosition}
         placeholderSrc="https://via.placeholder.com/150?text=Loading..."
+      /> */}
+
+      <Image
+        src={photo.thumbnailUrl}
+        alt={photo.title}
+        width={150}
+        height={150}
+        fallbackSrc="https://via.placeholder.com/150?text=Loading..."
       />
     </WrapItem>
   );

@@ -3,8 +3,6 @@ import {
   ThemeConfig,
   withDefaultColorScheme,
   withDefaultProps,
-  withDefaultSize,
-  withDefaultVariant,
 } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import { StyleFunctionProps } from "@chakra-ui/styled-system";
@@ -52,9 +50,7 @@ const colors = {
 const customTheme = extendTheme(
   config,
   { colors, styles },
-  withDefaultColorScheme({ colorScheme: "gray" }),
-  withDefaultSize({ size: "md" }),
-  withDefaultVariant({ variant: "outline" }),
+  withDefaultColorScheme({ colorScheme: "teal" }),
   withDefaultProps({ defaultProps: { variant: "outline" }, components: ["Button"] }),
 );
 

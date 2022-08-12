@@ -7,7 +7,7 @@ const App: React.FC = () => {
   return (
     <VStack>
       <Appbar />
-      <Container maxW="container.lg" centerContent={true} py="1rem">
+      <Container maxW="container.lg" centerContent={true} py="2rem">
         <PhotosView />
       </Container>
     </VStack>
