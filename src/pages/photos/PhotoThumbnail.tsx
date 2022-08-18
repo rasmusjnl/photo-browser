@@ -1,10 +1,9 @@
 import { Image, WrapItem } from "@chakra-ui/react";
 import { useCallback } from "react";
-import { LazyLoadImage, ScrollPosition } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   photo: Api.Photo;
-  scrollPosition: ScrollPosition;
 }
 
 const styles = {
@@ -19,24 +18,16 @@ const styles = {
   },
 };
 
-const PhotoThumbnail: React.FC<Props> = ({ photo, scrollPosition }: Props) => {
+const PhotoThumbnail: React.FC<Props> = ({ photo }: Props) => {
   const { container } = styles;
+  const navigate = useNavigate();
 
   const handleDetails = useCallback((photoId: number) => {
-    console.log(`Open details modal for photoId: ${photoId}`);
+    navigate(`/photos/${photoId}`);
   }, []);
 
   return (
     <WrapItem key={photo.id} sx={container} onClick={() => handleDetails(photo.id)}>
-      {/* <LazyLoadImage
-        src={photo.thumbnailUrl}
-        alt={photo.title}
-        width={150}
-        height={150}
-        scrollPosition={scrollPosition}
-        placeholderSrc="https://via.placeholder.com/150?text=Loading..."
-      /> */}
-
       <Image
         src={photo.thumbnailUrl}
         alt={photo.title}

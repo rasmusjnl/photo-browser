@@ -3,6 +3,7 @@ declare namespace Api {
     data: Photo[];
     nextPage?: number;
   }
+  
   interface Photo {
     id: number;
     albumId: Album["id"];

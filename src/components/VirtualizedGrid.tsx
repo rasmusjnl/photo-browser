@@ -1,5 +1,5 @@
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
-import PhotoThumbnail from "views/photos/PhotoThumbnail";
+import PhotoThumbnail from "pages/photos/PhotoThumbnail";
 
 interface Props {
   data: unknown[];
