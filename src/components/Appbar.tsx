@@ -14,15 +14,16 @@ const styles = {
     justifyContent: "center",
     zIndex: 99,
   },
-  homeLink: {
+  linksContainer: {
     position: "absolute",
     left: "2rem",
+    gap: "0.5rem",
   },
   toggleButton: { position: "absolute", right: "2rem" },
 };
 
 const Appbar: React.FC = () => {
-  const { container, homeLink, toggleButton } = styles;
+  const { container, linksContainer, toggleButton } = styles;
   const { colorMode, toggleColorMode } = useColorMode();
 
   const bg = useColorModeValue("baseLight.900", "baseDark.600");
@@ -30,10 +31,17 @@ const Appbar: React.FC = () => {
 
   return (
     <Flex sx={{ ...container, bg, boxShadow }}>
-      <Link sx={homeLink} as={RouterLink} to="photos">
-        Home
-      </Link>
-      <Heading variant="h1">Photo Browser</Heading>
+      <Flex sx={linksContainer}>
+        <Link as={RouterLink} to="photos">
+          Photos
+        </Link>
+        |
+        <Link as={RouterLink} to="albums">
+          Albums
+        </Link>
+      </Flex>
+
+      <Heading size="lg">PB</Heading>
       <IconButton
         aria-label="toggle-color-mode"
         sx={toggleButton}

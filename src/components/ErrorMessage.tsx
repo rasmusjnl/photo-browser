@@ -1,6 +1,6 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
 
-type ErrorContext = "photos" | "photo-details";
+type ErrorContext = "photos" | "photo-details" | "albums";
 
 interface Props {
   error: Error;
@@ -13,6 +13,8 @@ const getErrorDetails = (context?: ErrorContext) => {
       return "There was an issue fetching images!";
     case "photo-details":
       return "There was an issue fetching the requested image!";
+    case "albums":
+      return "There was an issue fetching albums!";
     default:
       return "Something went wrong!";
   }

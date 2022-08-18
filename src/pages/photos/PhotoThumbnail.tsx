@@ -24,7 +24,7 @@ const PhotoThumbnail: React.FC<Props> = ({ photo }: Props) => {
 
   const handleDetails = useCallback((photoId: number) => {
     navigate(`/photos/${photoId}`);
-  }, []);
+  }, [navigate]);
 
   return (
     <WrapItem key={photo.id} sx={container} onClick={() => handleDetails(photo.id)}>
