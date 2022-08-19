@@ -6,6 +6,7 @@ import HoverableBox from "components/HoverableBox";
 import useAlbums from "hooks/useAlbums";
 
 const AlbumPage: React.FC = () => {
+  // TODO: implement filtered query for albums
   const { isLoading, isError, error, data } = useAlbums();
 
   const navigate = useNavigate();

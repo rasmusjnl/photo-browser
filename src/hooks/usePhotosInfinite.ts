@@ -3,10 +3,10 @@ import { getPhotosByPage } from "services/photoService";
 
 /** Fetch paginated photo data.
  *  Default to 1 page at a time limited to 100 photos. */
-const usePhotosInfinite = () => {
+const usePhotosInfinite = (filter: string) => {
   return useInfiniteQuery(
-    ["photos-infinite"],
-    ({ pageParam }) => getPhotosByPage({ pageParam, limit: 100 }),
+    [`photos-infinite-${filter}`],
+    ({ pageParam }) => getPhotosByPage({ pageParam, limit: 100, filter: filter }),
     {
       getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
     },
