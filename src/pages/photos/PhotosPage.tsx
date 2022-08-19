@@ -6,7 +6,7 @@ import Error from "components/ErrorMessage";
 import Photos from "pages/photos/Photos";
 import usePhotosInfinite from "hooks/usePhotosInfinite";
 
-const PhotosView: React.FC = () => {
+const PhotosPage: React.FC = () => {
   const { filter } = useContext(FilterContext);
   const { data, isLoading, isError, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     usePhotosInfinite(filter);
@@ -50,4 +50,4 @@ const PhotosView: React.FC = () => {
   );
 };
 
-export default PhotosView;
+export default PhotosPage;
