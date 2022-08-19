@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Container, VStack } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import NavBar from "components/navigation/NavBar";
 
 const App: React.FC = () => {
