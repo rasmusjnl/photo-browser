@@ -7,6 +7,7 @@ import AlbumPhotos from "pages/albums/AlbumPhotos";
 import HomePage from "pages/home/HomePage";
 import MainPage from "pages/main/MainPage";
 
+// TODO: review routing regarding filters
 const CustomRoutes: React.FC = () => {
   return (
     <Routes>

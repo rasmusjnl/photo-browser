@@ -14,33 +14,38 @@ const PhotosView: React.FC = () => {
   if (isLoading) return <Spinner />;
   if (isError) return <Error error={error as Error} errorContext="photos" />;
 
+  // Check if paginated data exists
+  const hasData = !!data.pages[0].data;
+
   return (
     <>
       <VStack>
-        {!!data.pages[0].data ? (
+        {hasData ? (
           data.pages.map((page, i) => (
             <React.Fragment key={`${i}-${page.nextPage}`}>
               <Photos photos={page.data} />
             </React.Fragment>
           ))
         ) : (
-          <Text mt="1rem">No photo titles match the given search criteria.</Text>
+          <Text mt="1rem">No photos match the given search criteria.</Text>
         )}
       </VStack>
-      <Button
-        mt="2rem"
-        title="Load more photos"
-        isLoading={isFetchingNextPage}
-        disabled={!hasNextPage || isFetchingNextPage}
-        leftIcon={hasNextPage ? <RepeatIcon /> : <CheckIcon />}
-        onClick={() => fetchNextPage()}
-      >
-        {isFetchingNextPage
-          ? "Loading more photos..."
-          : hasNextPage
-          ? "Load more photos"
-          : "All photos fetched!"}
-      </Button>
+      {hasData && (
+        <Button
+          mt="2rem"
+          title="Load more photos"
+          isLoading={isFetchingNextPage}
+          disabled={!hasNextPage || isFetchingNextPage}
+          leftIcon={hasNextPage ? <RepeatIcon /> : <CheckIcon />}
+          onClick={() => fetchNextPage()}
+        >
+          {isFetchingNextPage
+            ? "Loading more photos..."
+            : hasNextPage
+            ? "Load more photos"
+            : "All photos fetched!"}
+        </Button>
+      )}
     </>
   );
 };

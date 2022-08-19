@@ -7,7 +7,7 @@ const MainPage: React.FC = () => {
   const [filter, setFilter] = useState("");
   const value = useMemo(() => ({ filter, setFilter }), [filter]);
 
-  // TODO: reset filter when navigating to another route
+  // TODO: reset filter when navigating to another route?
 
   return (
     <>

@@ -1,15 +1,23 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FilterContext } from "contexts/filterContext";
-import { useContext } from "react";
+import { useContext, useEffect, useMemo } from "react";
+import debounce from "lodash.debounce";
 
 const Filter: React.FC = () => {
   const { filter, setFilter } = useContext(FilterContext);
 
   const handleFilter = (newFilter: string) => {
-    // TODO: debounce this function
     setFilter(newFilter);
   };
+
+  // Debounce the filter calls to prevent unnecessary re-renders
+  const debouncedHandleFilter = useMemo(() => debounce(handleFilter, 500), []);
+
+  // Cancel debounce to prevent the function from being called after it's unmounted
+  useEffect(() => {
+    return () => debouncedHandleFilter.cancel();
+  }, []);
 
   return (
     <InputGroup width="15rem">
@@ -18,8 +26,8 @@ const Filter: React.FC = () => {
         sx={{ mb: "1rem" }}
         placeholder="Search by title..."
         type="text"
-        value={filter}
-        onChange={(e) => handleFilter(e.target.value)}
+        defaultValue={filter}
+        onChange={(e) => debouncedHandleFilter(e.target.value)}
       />
     </InputGroup>
   );
