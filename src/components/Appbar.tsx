@@ -53,6 +53,9 @@ const Appbar: React.FC = () => {
           variant="ghost"
         />
         <MenuList sx={{ backgroundColor: bg }}>
+          <MenuItem as={RouterLink} to="" _activeLink={{ bgColor: activeBg }}>
+            <Text>Home</Text>
+          </MenuItem>
           <MenuItem as={RouterLink} to="photos" _activeLink={{ bgColor: activeBg }}>
             <Text>Photos</Text>
           </MenuItem>
@@ -61,7 +64,9 @@ const Appbar: React.FC = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-      <Heading size="md">PB</Heading>
+      <Heading as={RouterLink} to="/" size="md">
+        PB
+      </Heading>
       <IconButton
         aria-label="toggle-color-mode"
         sx={toggleButton}

@@ -4,6 +4,7 @@ import PhotoDetails from "pages/photos/PhotoDetails";
 import PhotosPage from "pages/photos/PhotosPage";
 import AlbumPage from "pages/albums/AlbumsPage";
 import AlbumPhotos from "pages/albums/AlbumPhotos";
+import HomePage from "pages/home/HomePage";
 
 const CustomRoutes: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const CustomRoutes: React.FC = () => {
         <Route path="albums" element={<AlbumPage />} />
         <Route path="albums/:id" element={<AlbumPhotos />} />
 
-        <Route index element={<Navigate to="photos" replace />} />
+        <Route index element={<HomePage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
