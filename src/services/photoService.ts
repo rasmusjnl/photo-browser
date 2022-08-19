@@ -2,15 +2,8 @@ import axiosInstance from "axiosConfig";
 
 const BASE_URL = "/photos";
 
-export const getPhotosByPage = async (
-  { pageParam = 1 },
-  queryParams?: string,
-): Promise<Api.PhotoPage> => {
-  const queryString = queryParams
-    ? `${BASE_URL}?_limit=100&_page=${pageParam}&${queryParams}`
-    : `${BASE_URL}?_limit=100&_page=${pageParam}`;
-  return await axiosInstance.get(queryString);
-};
+export const getPhotosByPage = async ({ pageParam = 1, limit = 100 }): Promise<Api.PhotoPage> =>
+  await axiosInstance.get(`${BASE_URL}?_limit=${limit}&_page=${pageParam}`);
 
 export const getPhotos = async (): Promise<Api.Photo[]> => await axiosInstance.get(`${BASE_URL}`);
 

@@ -9,6 +9,7 @@ const styles = {
     width: 150,
     height: 150,
     alignItems: "center",
+    textAlign: "center",
     "&:hover": {
       cursor: "pointer",
       opacity: 0.8,

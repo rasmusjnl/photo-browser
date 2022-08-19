@@ -2,10 +2,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPhotosByPage } from "services/photoService";
 
 /** Fetch paginated photo data */
-const usePhotosInfinite = (queryParams?: string) => {
+const usePhotosInfinite = () => {
   return useInfiniteQuery(
     ["photos-infinite"],
-    ({ pageParam }) => getPhotosByPage({ pageParam }, queryParams),
+    ({ pageParam }) => getPhotosByPage({ pageParam, limit: 100 }),
     {
       getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
     },

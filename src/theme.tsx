@@ -50,7 +50,7 @@ const colors = {
 const customTheme = extendTheme(
   config,
   { colors, styles },
-  withDefaultColorScheme({ colorScheme: "teal" }),
+  withDefaultColorScheme({ colorScheme: "white" }),
   withDefaultProps({ defaultProps: { variant: "outline" }, components: ["Button"] }),
 );
 
