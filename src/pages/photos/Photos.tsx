@@ -7,13 +7,11 @@ interface Props {
 
 const Photos: React.FC<Props> = ({ photos }: Props) => {
   return (
-    <>
-      <Wrap justify="center">
-        {photos.map((photo) => (
-          <PhotoThumbnail key={photo.id} photo={photo} />
-        ))}
-      </Wrap>
-    </>
+    <Wrap justify="center">
+      {photos.map((photo) => (
+        <PhotoThumbnail key={photo.id} photo={photo} />
+      ))}
+    </Wrap>
   );
 };
 

@@ -16,17 +16,21 @@ interface ParsedLinkHeader {
   last: number;
 }
 
-/* Link header example format
+/* Link header example format:
  *
 const mockLinkHeader = `<http://jsonplaceholder.typicode.com/photos?_page=1>; rel="first", 
-   <http://jsonplaceholder.typicode.com/photos?_page=11>; rel="prev", 
-   <http://jsonplaceholder.typicode.com/photos?_page=13>; rel="next", 
-   <http://jsonplaceholder.typicode.com/photos?_page=500>; rel="last"`;
+                        <http://jsonplaceholder.typicode.com/photos?_page=11>; rel="prev", 
+                        <http://jsonplaceholder.typicode.com/photos?_page=13>; rel="next", 
+                        <http://jsonplaceholder.typicode.com/photos?_page=500>; rel="last"`;
 */
 
+// Parse the link header sent in the response of the API call.
+// Link header should always exist on paginated queries and have the format above.
 const parseLinkHeader = (linkHeader: string): ParsedLinkHeader => {
+  // Split the link header string into separate links with the relative page identifier
   const splitByRel = linkHeader.split(", ");
 
+  // Create a list that contains lists that contain the separated relative page identifier and its page
   const listOfRelsAndLinks = splitByRel.map((linkWithRel) => {
     const splitLinkWithRel = linkWithRel.split("; ");
     const link = splitLinkWithRel[0];
