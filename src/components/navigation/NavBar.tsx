@@ -1,13 +1,13 @@
 import { NavLink as RouterLink } from "react-router-dom";
 import { Flex, Heading, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import NavMenu from "./NavMenu";
 
 const styles = {
   container: {
     top: 0,
     position: "sticky",
-    height: "70px",
+    minHeight: "60px",
     width: "100%",
     px: "2rem",
     py: "1rem",
@@ -29,7 +29,7 @@ const NavBar: React.FC = () => {
     <Flex sx={{ ...container, bg, boxShadow }}>
       <NavMenu />
       <Heading as={RouterLink} to="/" size="md">
-        PB
+        Photo Browser
       </Heading>
       <IconButton
         aria-label="toggle-color-mode"
@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
         colorScheme="gray"
         isRound={true}
         variant="ghost"
-        icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
+        icon={colorMode === "light" ? <SunIcon /> : <MoonIcon />}
         onClick={toggleColorMode}
       />
     </Flex>
