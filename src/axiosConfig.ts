@@ -16,10 +16,13 @@ interface ParsedLinkHeader {
   last: number;
 }
 
+/* Link header example format
+ *
 const mockLinkHeader = `<http://jsonplaceholder.typicode.com/photos?_page=1>; rel="first", 
    <http://jsonplaceholder.typicode.com/photos?_page=11>; rel="prev", 
    <http://jsonplaceholder.typicode.com/photos?_page=13>; rel="next", 
    <http://jsonplaceholder.typicode.com/photos?_page=500>; rel="last"`;
+*/
 
 const parseLinkHeader = (linkHeader: string): ParsedLinkHeader => {
   const splitByRel = linkHeader.split(", ");
