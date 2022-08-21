@@ -1,15 +1,22 @@
 declare namespace Api {
-  interface PhotoPage {
-    data: Photo[];
+  interface PaginatedQuery {
     nextPage?: number;
   }
-  
+
+  interface PhotoPage extends PaginatedQuery {
+    data: Photo[];
+  }
+
   interface Photo {
     id: number;
     albumId: Album["id"];
     title: string;
     url: string;
     thumbnailUrl: string;
+  }
+
+  interface AlbumPage extends PaginatedQuery {
+    data: Album[];
   }
 
   interface Album {

@@ -14,8 +14,7 @@ const PhotosPage: React.FC = () => {
   if (isLoading) return <Spinner />;
   if (isError) return <Error error={error as Error} errorContext="photos" />;
 
-  // Check if paginated data exists
-  const hasData = !!data.pages[0].data;
+  const hasData = data.pages[0].data.length > 0;
 
   return (
     <>

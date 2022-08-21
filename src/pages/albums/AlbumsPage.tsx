@@ -1,42 +1,50 @@
-import { useCallback, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import { FilterContext } from "contexts/filterContext";
-import { Spinner, Wrap, Text } from "@chakra-ui/react";
+import { Spinner, Wrap, Text, Button } from "@chakra-ui/react";
+import { CheckIcon, RepeatIcon } from "@chakra-ui/icons";
 import ErrorMessage from "components/ErrorMessage";
-import HoverableBox from "components/HoverableBox";
-import useAlbums from "hooks/useAlbums";
+import useAlbumsInfinite from "hooks/useAlbumsInfinite";
+import Albums from "./Albums";
 
 const AlbumPage: React.FC = () => {
-  // TODO: infinite query for albums too?
   const { filter } = useContext(FilterContext);
-  const { isLoading, isError, error, data } = useAlbums(filter);
-
-  const navigate = useNavigate();
-
-  const handleDetails = useCallback(
-    (albumId: string) => {
-      navigate(`/albums/${albumId}`);
-    },
-    [navigate],
-  );
+  const { data, isLoading, isError, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useAlbumsInfinite(filter);
 
   if (isLoading) return <Spinner />;
-  if (isError) return <ErrorMessage error={error} errorContext="albums" />;
+  if (isError) return <ErrorMessage error={error as Error} errorContext="albums" />;
+
+  const hasData = data.pages[0].data.length > 0;
 
   return (
     <>
       <Wrap justify="center" py="0.5rem">
-        {data.map((album) => (
-          <HoverableBox
-            key={album.id}
-            sx={{ width: 150, height: 150 }}
-            handleClick={() => handleDetails(album.id)}
-          >
-            <Text>{album.title}</Text>
-          </HoverableBox>
-        ))}
+        {hasData ? (
+          data.pages.map((page, i) => (
+            <React.Fragment key={`${i}-${page.nextPage}`}>
+              <Albums albums={page.data} />
+            </React.Fragment>
+          ))
+        ) : (
+          <Text mt="1rem">No albums match the given search criteria.</Text>
+        )}
       </Wrap>
-      {data.length === 0 && <Text>No albums match the given search criteria.</Text>}
+      {hasData && (
+        <Button
+          mt="2rem"
+          title="Load more photos"
+          isLoading={isFetchingNextPage}
+          disabled={!hasNextPage || isFetchingNextPage}
+          leftIcon={hasNextPage ? <RepeatIcon /> : <CheckIcon />}
+          onClick={() => fetchNextPage()}
+        >
+          {isFetchingNextPage
+            ? "Loading more albums..."
+            : hasNextPage
+            ? "Load more albums"
+            : "All albums fetched!"}
+        </Button>
+      )}
     </>
   );
 };

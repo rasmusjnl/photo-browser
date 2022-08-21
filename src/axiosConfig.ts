@@ -47,15 +47,29 @@ const parseLinkHeader = (linkHeader: string): ParsedLinkHeader => {
 
 apiInstance.interceptors.response.use(
   (response) => {
-    const linkHeader = response.headers.link;
-    if (!!linkHeader) {
-      const parsedLinkHeader = parseLinkHeader(linkHeader);
+    /* NOTE: Link header doesn't exist if all data is fetched via the same query.
+             E.g if only 100 albums exist and they are fetched with limit >= 100.
+             Here we assume that the request was a paginated query if the request URL
+             contains the keyword "_page=". */
+
+    /** Check if the request was a paginated query */
+    const isPaginatedQuery = response.config.url?.includes("_page=");
+
+    if (isPaginatedQuery) {
+      /** Always return paginated request data in the same format regardless if
+       *  link header exists in the response or not.  */
+      const linkHeader = response.headers.link;
+      if (!!linkHeader) {
+        const parsedLinkHeader = parseLinkHeader(linkHeader);
+        return {
+          data: response.data,
+          nextPage: parsedLinkHeader["next"],
+        };
+      }
       return {
         data: response.data,
-        nextPage: parsedLinkHeader["next"],
       };
     }
-
     return response.data;
   },
   (error) => {
