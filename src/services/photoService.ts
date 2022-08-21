@@ -14,5 +14,5 @@ export const getPhotos = async (): Promise<Api.Photo[]> => await axiosInstance.g
 export const getPhotoById = async (id: string): Promise<Api.Photo> =>
   await axiosInstance.get(`${BASE_URL}/${id}`);
 
-export const getPhotosByAlbumId = async (id: string): Promise<Api.Photo[]> =>
-  await axiosInstance.get(`${BASE_URL}?albumId=${id}`);
+export const getPhotosByAlbumId = async (id: string, filter = ""): Promise<Api.Photo[]> =>
+  await axiosInstance.get(`${BASE_URL}?albumId=${id}&title_like=${filter}`);
