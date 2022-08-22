@@ -1,8 +1,9 @@
 # Photo Browser
 
-A simple web application to browse photos and photo albums.
+A simple web application to browse photos and photo albums from http://jsonplaceholder.typicode.com/.
 
-Built with:
+### Technologies
+
 - TypeScript
 - React (CRA)
 - Chakra UI
@@ -10,4 +11,4 @@ Built with:
 - React Query
 - React Router
 
-Find the deployed version at: https://photobrowser-rjnl.netlify.app
+Find the deployed version at: https://photobrowser-rjnl.netlify.app/.
