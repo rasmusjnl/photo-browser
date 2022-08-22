@@ -18,7 +18,7 @@ const Photos: React.FC<Props> = ({ photos }: Props) => {
   );
 
   return (
-    <Wrap justify="center" py="0.5rem">
+    <Wrap justify="center" mt="0.5rem">
       {photos.map((photo) => (
         <HoverableBox key={photo.id} handleClick={() => handleDetails(photo.id)}>
           <Image

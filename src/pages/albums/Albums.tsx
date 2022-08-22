@@ -18,7 +18,7 @@ const Albums: React.FC<Props> = ({ albums }: Props) => {
   );
 
   return (
-    <Wrap justify="center" py="0.5rem">
+    <Wrap justify="center" mt="0.5rem">
       {albums.map((album) => (
         <HoverableBox
           key={album.id}

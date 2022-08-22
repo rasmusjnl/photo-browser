@@ -1,7 +1,7 @@
 import { NavLink as RouterLink } from "react-router-dom";
 import { Flex, Heading, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import NavMenu from "./NavMenu";
+import NavDrawer from "./NavDrawer";
 
 const styles = {
   container: {
@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
 
   return (
     <Flex sx={{ ...container, bg, boxShadow }}>
-      <NavMenu />
+      <NavDrawer />
       <Heading as={RouterLink} to="/" size="md">
         Photo Browser
       </Heading>
