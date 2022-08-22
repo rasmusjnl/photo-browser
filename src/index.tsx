@@ -7,10 +7,15 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import CustomRoutes from "components/CustomRoutes";
 import customTheme from "theme";
 import reportWebVitals from "./reportWebVitals";
+import { initZustandDevtools } from "middleware";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const queryClient = new QueryClient();
+
+if (process.env.NODE_ENV === "development") {
+  initZustandDevtools();
+}
 
 root.render(
   <React.StrictMode>
