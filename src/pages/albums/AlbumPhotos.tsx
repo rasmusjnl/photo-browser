@@ -20,7 +20,7 @@ const AlbumPhotos: React.FC = () => {
     <Photos photos={data} />
   ) : (
     <Text mt="1rem">
-      {filter.length === 0 ? "Album is empty." : "No photos match the given search criteria."}{" "}
+      {filter.length === 0 ? "Album is empty." : "No photos match the given search criteria."}
     </Text>
   );
 };

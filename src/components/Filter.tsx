@@ -21,10 +21,11 @@ const Filter: React.FC<Props> = ({ type }: Props) => {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFilter = (newFilter: string) => setFilter(type, newFilter);
-
-  /** Debounce the filter calls to prevent unnecessary re-renders */
-  const debouncedHandleFilter = useMemo(() => debounce(handleFilter, 500), []);
+  /** Debounce the setFilter calls to prevent unnecessary re-renders */
+  const debouncedHandleFilter = useMemo(
+    () => debounce((newFilter: string) => setFilter(type, newFilter), 500),
+    [type, setFilter],
+  );
 
   const handleClear = () => {
     setFilter(type, "");
@@ -38,7 +39,7 @@ const Filter: React.FC<Props> = ({ type }: Props) => {
   /** Cancel debounce to prevent the function from being called after it's unmounted */
   useEffect(() => {
     return () => debouncedHandleFilter.cancel();
-  }, []);
+  }, [debouncedHandleFilter]);
 
   return (
     <InputGroup width="15rem">
