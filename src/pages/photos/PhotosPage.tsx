@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
+import usePhotosInfinite from "hooks/usePhotosInfinite";
+import useFilterStore from "stores/useFilterStore";
 import { Button, Spinner, Text, VStack } from "@chakra-ui/react";
 import { CheckIcon, RepeatIcon } from "@chakra-ui/icons";
-import { FilterContext } from "contexts/filterContext";
 import Error from "components/ErrorMessage";
 import Photos from "pages/photos/Photos";
-import usePhotosInfinite from "hooks/usePhotosInfinite";
 
 const PhotosPage: React.FC = () => {
-  const { filter } = useContext(FilterContext);
+  const filter = useFilterStore((state) => state.photos);
   const { data, isLoading, isError, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     usePhotosInfinite(filter);
 

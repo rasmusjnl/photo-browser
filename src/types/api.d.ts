@@ -1,3 +1,4 @@
+/** Namespace for all API related data. */
 declare namespace Api {
   interface PaginatedQuery {
     nextPage?: number;

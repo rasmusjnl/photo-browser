@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
-import { FilterContext } from "contexts/filterContext";
+import React from "react";
+import useAlbumsInfinite from "hooks/useAlbumsInfinite";
+import useFilterStore from "stores/useFilterStore";
+
 import { Spinner, Wrap, Text, Button } from "@chakra-ui/react";
 import { CheckIcon, RepeatIcon } from "@chakra-ui/icons";
 import ErrorMessage from "components/ErrorMessage";
-import useAlbumsInfinite from "hooks/useAlbumsInfinite";
 import Albums from "./Albums";
 
-const AlbumPage: React.FC = () => {
-  const { filter } = useContext(FilterContext);
+const AlbumsPage: React.FC = () => {
+  const filter = useFilterStore((state) => state.albums);
   const { data, isLoading, isError, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useAlbumsInfinite(filter);
 
@@ -49,4 +50,4 @@ const AlbumPage: React.FC = () => {
   );
 };
 
-export default AlbumPage;
+export default AlbumsPage;

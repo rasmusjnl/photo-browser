@@ -1,14 +1,14 @@
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { FilterContext } from "contexts/filterContext";
+import useFilterStore from "stores/useFilterStore";
 import usePhotosByAlbumId from "hooks/usePhotoByAlbumId";
-import Photos from "pages/photos/Photos";
+
 import { Spinner, Text } from "@chakra-ui/react";
+import Photos from "pages/photos/Photos";
 import ErrorMessage from "components/ErrorMessage";
 
 const AlbumPhotos: React.FC = () => {
   const params = useParams();
-  const { filter } = useContext(FilterContext);
+  const filter = useFilterStore((state) => state.albumPhotos);
 
   /** TODO: infinite query in the future */
   const { isLoading, isError, error, data } = usePhotosByAlbumId(params.id!, filter);
