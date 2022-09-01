@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 
 const queryClient = new QueryClient();
 
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.DEV) {
   initZustandDevtools();
 }
 
