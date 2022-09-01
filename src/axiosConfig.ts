@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL || "";
+
 /** Create a mock axios instance to handle requests to our mock JSON server */
 const apiInstance = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL,
   timeout: 10000 /** 10 seconds */,
   headers: {
     "Content-type": "application/json",
