@@ -5,7 +5,7 @@ A simple web application to browse photos and photo albums from http://jsonplace
 ### Technologies
 
 - TypeScript
-- React (CRA)
+- React
 - Chakra UI
 - Zustand
 - React Query
